@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+}
+
+/* NAVBAR */
+
+#brand-logo {
+    width: 50px;
+}
+
+.navbar.navbar-expand-lg {
+    background-color:indigo; /*indigo*/
+    font-weight: bold;
+}
+
+
+.navbar.navbar-expand-lg a {
+    color: white;
+}
