@@ -1,5 +1,6 @@
 <?php
     include_once("templates/header.php");
+    include_once("process/acai.php");
 ?>
     <div id="main-banner">
         <h1>Faça seu Pedido</h1>
