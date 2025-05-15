@@ -72,6 +72,29 @@ html, body {
     margin-top: 15px;
 }
 
+/* ALERTA */
+.alert {
+    border-radius: 0;
+    text-align: center;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.alert.alert-success {
+    border: 2px solid green;
+    background-color:rgb(188, 255, 188);
+}
+
+.alert.alert-warning {
+    border: 2px solid rgb(221, 221, 1);
+    background-color: rgb(250, 255, 180);
+}
+
+.alert p {
+    margin-bottom: 0;
+}
 
 /* FOOTER */
 footer {
