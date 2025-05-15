@@ -24,7 +24,43 @@
 
     } 
     else if ($method === "POST") {
+        $data = $_POST;
 
+        $tamanho = $data["tamanho"];
+        $sabor = $data["sabor"];
+        $creme = $data["creme"];
+        $frutas = $data["frutas"];
+        $complementos = $data["complementos"];
+
+        //validação de frutas e complementos máximos
+        if(count($frutas) > 3) {
+
+            $_SESSION["msg"] = "Selecione no máximo 3 frutas";
+            $_SESSION["status"] = "warning";
+
+        }
+        else {
+
+            echo "Passou";
+            exit;
+
+        }
+        //Retorna para a home
+        header("Location:..");
+
+        if(count($complementos) > 3) {
+
+            $_SESSION["msg"] = "Selecione no máximo 3 complementos";
+            $_SESSION["status"] = "warning";
+
+        }
+        else {
+
+            echo "Passou";
+
+        }
+        //Retorna para a home
+        header("Location:..");
     }
 
 ?>
