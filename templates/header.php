@@ -17,5 +17,16 @@
 </head>
 <body>
     <header>
-        <p>Cabeçalho</p>
+        <nav class="navbar navbar-expand-lg">
+            <a href="index.php" class="navbar-brand">
+                <img src="imagens/blueberry_5848248.png" alt="Loja de Açaí" id="brand-logo">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a href="index.php" class="nav-link">Peça seu açaí</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </header>
