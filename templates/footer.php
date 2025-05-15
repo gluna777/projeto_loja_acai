@@ -1,5 +1,5 @@
 <footer>
-        <p>Rodapé</p>
+        <p>Loja de Açaí &copy; 2025</p>
     </footer>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" 
