@@ -18,11 +18,66 @@ html, body {
     color: white;
 }
 
+/* HOME */
+#main-banner {
+    background-image: url("../imagens/banner_oficial.png");
+    height: 400px;
+    background-size:70%;
+    background-position: center;
+    width: 100%;
+    background-position-y: -350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-banner h1 {
+    color: white;
+    background-color: indigo;
+    text-align: center;
+    padding: 15px;
+    text-transform: uppercase;
+    width: 500px;
+    font-size: 40px;
+}
+
+#main-container h2 {
+    margin-bottom: 15px;
+}
+
+.row {
+    margin: 0;
+}
+
+#acai-form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#main-container {
+    margin-bottom: 100px;
+    padding: 50px 0;
+    text-align: center;
+    min-height: 20%;
+}
+
+#acai-form label {
+    font-weight: bold;
+}
+
+.btn.btn-primary {
+    background-color: indigo;
+    border-color: indigo;
+    margin-top: 15px;
+}
+
+
 /* FOOTER */
 footer {
     position: relative;
     width: 100%;
-    height: 90px;
+    height: 70px;
     background-color: indigo;
     color: white;
     display: flex;
