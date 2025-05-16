@@ -96,6 +96,42 @@ html, body {
     margin-bottom: 0;
 }
 
+/* DASHBOARD */
+.delete-btn, .update-btn {
+    border: none;
+    background-color: transparent;
+}
+
+.delete-btn {
+    padding-top: 10px;
+}
+
+.delete-btn i {
+    color: red;
+    font-size: 20px;
+}
+
+.update-btn i {
+    color:blue;
+}
+
+.update-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.update-btn {
+    margin-left: 10px;
+}
+
+.status-input {
+    width:70%;
+}
+
+.table ul {
+    text-align: left;
+}
+
 /* FOOTER */
 footer {
     position: relative;
