@@ -12,13 +12,15 @@
                 <h2>Monte seu açaí como desejar:</h2>
                 <form action="process/acai.php" method="POST" id="acai-form">
                     <div class="form-group">
-                        <label for="tamanho">Tamanho:</label>
-                        <select name="tamanho" id="tamanho" class="form-control">
-                            <option value="">Selecione o tamanho</option>
-                            <?php foreach ($tamanhos as $tamanho): ?>
-                                <option value="<?= $tamanho["id_tamanho"] ?>"> <?= $tamanho["copo"] ?> </option>
+                        <label for="creme">Creme:</label>
+                        <select name="creme" id="creme" class="form-control">
+                            <option value="">Selecione o creme</option>
+                            <?php foreach ($cremes as $creme): ?>
+                                <option value="<?= $creme["id_creme"] ?>"> <?= $creme["nome"] ?> </option>
                             <?php endforeach ?>
                         </select>
+                    </div>
+                    <div class="form-group">
                         <label for="sabor">Sabor:</label>
                         <select name="sabor" id="sabor" class="form-control">
                             <option value="">Selecione o sabor</option>
@@ -28,11 +30,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="creme">Creme:</label>
-                        <select name="creme" id="creme" class="form-control">
-                            <option value="">Selecione o creme</option>
-                            <?php foreach ($cremes as $creme): ?>
-                                <option value="<?= $creme["id_creme"] ?>"> <?= $creme["nome"] ?> </option>
+                        <label for="tamanho">Tamanho:</label>
+                        <select name="tamanho" id="tamanho" class="form-control">
+                            <option value="">Selecione o tamanho</option>
+                            <?php foreach ($tamanhos as $tamanho): ?>
+                                <option value="<?= $tamanho["id_tamanho"] ?>"> <?= $tamanho["copo"] ?> </option>
                             <?php endforeach ?>
                         </select>
                     </div>
