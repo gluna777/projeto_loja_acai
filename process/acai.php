@@ -33,30 +33,17 @@
         $complementos = $data["complementos"];
 
         //validação de frutas e complementos máximos
-        if(count($frutas) > 3) {
+        $itens = ['frutas' => $frutas, 'complementos' => $complementos];
 
-            $_SESSION["msg"] = "Selecione no máximo 3 frutas";
-            $_SESSION["status"] = "warning";
+        foreach ($itens as $nome => $lista) {
+            if (count($lista) > 3) {
+                $_SESSION["msg"] = "Selecione no máximo 3 {$nome}";
+                $_SESSION["status"] = "warning";
+                break; // para evitar sobrescrever a mensagem se ambas ultrapassarem
+            }
+            else {
 
-        }
-        else {
-
-            echo "Passou";
-            exit;
-
-        }
-        //Retorna para a home
-        header("Location:..");
-
-        if(count($complementos) > 3) {
-
-            $_SESSION["msg"] = "Selecione no máximo 3 complementos";
-            $_SESSION["status"] = "warning";
-
-        }
-        else {
-            
-            // Salavando creme, sabor e tamanho
+                // Salavando creme, sabor e tamanho
             $stmt = $conn->prepare("INSERT INTO acais (creme_id, sabor_id, tamanho_id) 
             VALUES (:creme, :sabor, :tamanho)");
 
@@ -110,9 +97,14 @@
 
             $stmt->execute();
 
+            //Mensagem de sucesso
+            $_SESSION["msg"] = "Pedido Realizado com sucesso";
+            $_SESSION["status"] = "success";
+            }
         }
         //Retorna para a home
         header("Location:..");
+
     }
 
 ?>
