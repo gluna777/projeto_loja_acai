@@ -7,14 +7,14 @@
     //Resgate dos dados, montagem do pedido
     if ($method === "GET") {
 
-        $tamanhosQuery = $conn->query("SELECT * FROM tamanhos;");
-        $tamanhos  = $tamanhosQuery->fetchAll();
+        $cremesQuery = $conn->query("SELECT * FROM cremes;");
+        $cremes  = $cremesQuery->fetchAll();
 
         $saboresQuery = $conn->query("SELECT * FROM sabores;");
         $sabores  = $saboresQuery->fetchAll();
 
-        $cremesQuery = $conn->query("SELECT * FROM cremes;");
-        $cremes  = $cremesQuery->fetchAll();
+        $tamanhosQuery = $conn->query("SELECT * FROM tamanhos;");
+        $tamanhos  = $tamanhosQuery->fetchAll();
 
         $frutasQuery = $conn->query("SELECT * FROM frutas;");
         $frutas  = $frutasQuery->fetchAll();
@@ -26,9 +26,9 @@
     else if ($method === "POST") {
         $data = $_POST;
 
-        $tamanho = $data["tamanho"];
-        $sabor = $data["sabor"];
         $creme = $data["creme"];
+        $sabor = $data["sabor"];
+        $tamanho = $data["tamanho"];
         $frutas = $data["frutas"];
         $complementos = $data["complementos"];
 
@@ -55,8 +55,60 @@
 
         }
         else {
+            
+            // Salavando creme, sabor e tamanho
+            $stmt = $conn->prepare("INSERT INTO acais (creme_id, sabor_id, tamanho_id) 
+            VALUES (:creme, :sabor, :tamanho)");
 
-            echo "Passou";
+            //filtrando inputs
+            $stmt->bindParam(":creme", $creme, PDO::PARAM_INT);
+            $stmt->bindParam(":sabor", $sabor, PDO::PARAM_INT);
+            $stmt->bindParam(":tamanho", $tamanho, PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            //Salvando frutas e complementos
+            //Resgatando ultimo id do ultimo açaí
+            $acaiId = $conn->lastInsertId();
+
+            //frutas
+            $stmt = $conn->prepare("INSERT INTO acai_fruta (acai_id, fruta_id)
+            VALUES (:acai, :fruta)");
+
+            // Repetição até terminar de salvar as frutas
+            foreach($frutas as $fruta) {
+                
+                $stmt->bindParam(":acai", $acaiId, PDO::PARAM_INT);
+                $stmt->bindParam(":fruta", $acaiId, PDO::PARAM_INT);
+
+                $stmt->execute();
+            }
+
+            //complementos
+            $stmt = $conn->prepare("INSERT INTO acai_complemento (acai_id, complemento_id)
+            VALUES (:acai, :complemento)");
+
+            // Repetição até terminar de salvar as frutas
+            foreach($complementos as $complemento) {
+                
+                $stmt->bindParam(":acai", $acaiId, PDO::PARAM_INT);
+                $stmt->bindParam(":complemento", $acaiId, PDO::PARAM_INT);
+
+                $stmt->execute();
+            }
+
+            //criar pedido do açaí
+            $stmt = $conn->prepare("INSERT INTO pedidos(acai_id, status_id) 
+            VALUES(:acai, :status)");
+
+            //status -> sempre inicia em 1 = Em produção
+            $statusId =1;
+
+            //filtrar inputs
+            $stmt->bindParam(":acai", $acaiId);
+            $stmt->bindParam(":status", $statusId);
+
+            $stmt->execute();
 
         }
         //Retorna para a home
