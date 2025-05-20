@@ -1,5 +1,6 @@
 <?php
     include_once("templates/header.php");
+    include_once("process/orders.php");
 ?>
     <div id="main-container">
         <div class="container">
@@ -22,35 +23,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>#1</td>
-                                    <td>Cupuaçu</td>
-                                    <td>Açaí</td>
-                                    <td>400ml</td>
-                                    <td>Morango</td>
-                                    <td>Leite Condensado</td>
-                                    <td>
-                                        <form action="" class="form-group update-form">
-                                            <input type="hidden" name="type" value="update">
-                                            <input type="hidden" name="id" id="1">
-                                            <select name="status" class="form-control status-input">
-                                                <option value="">Entrega</option>
-                                            </select>
-                                            <button type="submit" class="update-btn">
-                                                <i class="fas fa-sync-alt"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="process/orders.php" method="POST">
-                                            <input type="hidden" name="type" value="delete">
-                                            <input type="hidden" name="id" id="1">
-                                            <button type="submit" class="delete-btn">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                <?php foreach($acais as $acai): ?>
+                                    <tr>
+                                        <td><?=$acai["id_acai"] ?></td>
+                                        <td><?=$acai["creme"] ?></td>
+                                        <td><?=$acai["sabor"] ?></td>
+                                        <td><?=$acai["tamanho"] ?></td>
+                                        <td>
+                                            <ul>
+                                                <?php foreach($acai["frutas"] as $fruta): ?>
+                                                    <li><?= $fruta; ?> </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <?php foreach($acai["complementos"] as $complemento): ?>
+                                                    <li><?= $complemento; ?> </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <form action="" class="form-group update-form">
+                                                <input type="hidden" name="type" value="update">
+                                                <input type="hidden" name="id" value="<?= $acai["id_acai"] ?>">
+                                                <select name="status" class="form-control status-input">
+                                                    <?php foreach($status as $s): ?>
+                                                        <option value="<?= $s["id_status"] ?>" 
+                                                        <?php echo ($s["id_status"] == $acai["status"]) ? "selected" : ""; ?> > 
+                                                        <?= $s["tipo"] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                                <button type="submit" class="update-btn">
+                                                    <i class="fas fa-sync-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="process/orders.php" method="POST">
+                                                <input type="hidden" name="type" value="delete">
+                                                <input type="hidden" name="id" value="<?= $acai["id_acai"] ?>">
+                                                <button type="submit" class="delete-btn">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>  
