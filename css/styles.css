@@ -144,3 +144,52 @@ footer {
     justify-content: center;
     font-weight: bold;
 }
+
+/* RESPONSIVIDADE */
+@media(max-width: 435px) {
+    #main-banner{
+    background-position-y: -300px;
+    }
+
+    #main-banner h1 {
+        padding: 8px;
+    }
+
+    #main-container {
+        margin-bottom: 0;
+    }
+
+    #main-container .container {
+        padding: 8px;
+    }
+
+    .form-group .btn.btn-primary {
+        width: 100%;
+        height: 50px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .table-container {
+        padding: 0;
+    }
+
+    .table td, .table th {
+        padding: .5rem;
+    }
+
+    th span {
+        display: none;
+    }
+
+    .table thead th:nth-child(5),
+    .table thead th:nth-child(6), 
+    .table tbody td:nth-child(5), 
+    .table tbody td:nth-child(6) {
+        display: none;
+    }
+
+    footer {
+    width: 100%;
+    }
+}
