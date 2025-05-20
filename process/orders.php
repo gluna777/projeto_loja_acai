@@ -121,6 +121,24 @@
     } 
     else if ($method === "POST") {
 
+        //verificando tipo de POST
+        $type = $_POST["type"];
+
+        //excluir pedido
+        if($type === "delete"){
+
+            $acaiId = $_POST["id"];
+
+            $deleteQuery = $conn->prepare("DELETE FROM pedidos WHERE acai_id = :acai_id;");
+            $deleteQuery->bindParam(":acai_id", $acaiId, PDO::PARAM_INT);
+            $deleteQuery->execute();
+
+            $_SESSION["msg"] = "Pedido removido com sucesso";
+            $_SESSION["status"] = "success";
+        }
+    
+        header("Location:../dashboard.php");
+
     }
 
 ?>
