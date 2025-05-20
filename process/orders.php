@@ -136,6 +136,20 @@
             $_SESSION["msg"] = "Pedido removido com sucesso";
             $_SESSION["status"] = "success";
         }
+        else if($type === "update") { //Atualizar status do pedido
+
+            $acaiId = $_POST["id"];
+            $statusId = $_POST["status"];
+
+            $updateQuery = $conn->prepare("UPDATE pedidos SET status_id = :status_id 
+            WHERE acai_id = :acai_id;");
+            $updateQuery->bindParam(":acai_id", $acaiId, PDO::PARAM_INT);
+            $updateQuery->bindParam(":status_id", $statusId, PDO::PARAM_INT);
+            $updateQuery->execute();
+
+            $_SESSION["msg"] = "Pedido atualizado com sucesso";
+            $_SESSION["status"] = "success";
+        }
     
         header("Location:../dashboard.php");
 
